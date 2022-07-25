@@ -1,0 +1,50 @@
+{% extends "portfolio1/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<body>
+
+    <br>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-10 table-responsive">
+                            <table class="table table-theme">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Título</th>
+                                        <th scope="col">Lugar</th>
+                                        <th scope="col">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    {% for expProfesional in object_list %}
+                                        <tr>
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{expProfesional.titulo}}</td>
+                                            <td>{{expProfesional.titulo}}</td>
+                                            <td>{{expProfesional.lugar}}</td>
+                                            <td>
+                                                
+                                                <a href="{% url 'expProfesionalEditar' expProfesional.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                                <a href="{% url 'expProfesionalEliminar' expProfesional.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                               
+                                            </td>
+                                            
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+    <a href="{% url 'softSkillsNuevo'  %}">Nueva Soft Skill</a> | 
+
+
+</body>
+</html>
+    
+
+
+{% endblock %}

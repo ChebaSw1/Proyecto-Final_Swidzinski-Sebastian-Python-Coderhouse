@@ -1,0 +1,78 @@
+{% extends "portfolio1/padre.html" %}
+
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<!-- ======= Testimonials Section ======= -->
+<section id="testimonials" class="testimonials section-bg">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Proyectos</h2>
+      <p>{{yo.resumen}}</div>
+    
+    <table>
+          <tr>
+            
+            {% for proy in proyectos %}
+
+              {% if forloop.counter == 5 or forloop.counter == 9 or forloop.counter == 13 or forloop.counter == 17 %}
+              <tr>
+              {% endif %}
+            
+            <td><div id="testimonial-item">
+              <br>
+            <div class="testimonial-item" data-aos="fade-up">
+              <p>{{proy.contenido}}
+              </p>
+              <a href="{% url 'proyectosDetalle' proy.id %}"><img src="{{proy.imagen}}" class="testimonial-img" alt=""></a>
+              <a href="{% url 'proyectosDetalle' proy.id %}" ><h3>{{proy.titulo}}</h3></a>
+              
+              <h4>{{proy.creado}}</h4>
+            </div>
+            </div>
+            </td>
+            
+            {% endfor %}
+                    
+          </tr>
+    
+    
+
+    </table>
+
+    <div class="section-title">
+      <h2>Intereses</h2>
+          
+    <table>
+          <tr>
+            
+            {% for inter in intereses %}
+
+              {% if forloop.counter == 5 or forloop.counter == 9 or forloop.counter == 13 or forloop.counter == 17 %}
+              <tr>
+              {% endif %}
+            
+            <td><div id="testimonial-item">
+              <br>
+            <div class="testimonial-item" data-aos="fade-up">
+              
+              <p>{{inter.resumen}}</p>
+              <h3>{{inter.titulo}}</h3>
+                  
+            </div>
+            </div>
+            </td>
+            
+            {% endfor %}
+                    
+          </tr>
+    
+    
+
+    </table>
+
+{% endblock %}
+

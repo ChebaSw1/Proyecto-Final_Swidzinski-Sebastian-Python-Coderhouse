@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+
+        {% load static %}
+       
+      
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      
+        <title>SWIDZINSKI Sebastián Portfolio</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+      
+        <!-- Favicons -->
+        <link href="{%static 'assets/img/favicon.png'%}" rel="icon">
+        <link href="{%static 'assets/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+      
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+      
+        <!-- Vendor CSS Files -->
+        <link href="{%static 'assets/vendor/aos/aos.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/boxicons/css/boxicons.min.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet'%}">
+      
+        <!-- Template Main CSS File -->
+        <link href="{%static 'assets/css/style.css'%}" rel="stylesheet">
+      
+        <!-- =======================================================
+        * Template Name: iPortfolio - v3.7.0
+        * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+        * Author: BootstrapMade.com
+        * License: https://bootstrapmade.com/license/
+        ======================================================== -->
+      </head>
+
+<body>
+
+<!-- >>>>>>>>-------BUSCADOR------------<<<<< -->
+
+<br>
+<br>
+<div class="section-title">
+<h2>Buscar en Todas las Categorias</h2>
+<a href="{% url 'Inicio' %}"><i class="bx bx-home"></i> Inicio</a><br>
+</div>
+<div class="row gx-5 justify-content-center">
+<div class="col-lg-12">
+    <form class="d-flex my-2 my-lg-0" action="" method="post">
+        {% csrf_token %}
+        <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por nombre/apellido/etc" aria-label="Search">
+        <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+    </form>
+</div>
+</div>
+<br>
+<h4>
+{% if search %}
+Resultados para "{{busqueda}}":
+{% else %}
+   {{no_dato}} Ingresa tu Busqueda 
+{% endif %}
+
+</h4>
+{% if educacion_t %}
+<br>
+<br>                    
+<div class="section-title">
+<h2>Educación</h2>
+</div>
+                   
+                    <div class="row gx-5 justify-content-center">
+                       <div class="col-lg-10 table-responsive">
+                           <table class="table table-theme">
+                               <thead>
+                                   <tr>
+                                       <th scope="col">#</th>
+                                       <th scope="col">Título</th>
+                                       <th scope="col">Lugar</th>
+                                       <th scope="col">Ciudad</th>
+                                       <th scope="col">Acción</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   
+                                   {% for educacion in educacionb %}
+                                       <tr>
+                                           <th scope="row">{{forloop.counter}}</th>
+                                           <td>{{educacion.titulo}}</td>
+                                           <td>{{educacion.lugar}}</td>
+                                           <td>{{educacion.ciudad}}</td>
+                                           {% if request.user.is_authenticated %}
+                                           <td>
+                                               <a href="{% url 'educacionEditar' educacion.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                               <a href="{% url 'educacionEliminar' educacion.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                           </td>
+                                           {% endif %}
+                                       </tr>
+                                   {% endfor %}
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+                   {% endif %}
+
+{% if expProfesional_t %}
+   <br>
+   <br>                    
+   <div class="section-title">
+      <h2>Experiencia Profesional</h2>
+   </div>
+   <div class="row gx-5 justify-content-center">
+       <div class="col-lg-10 table-responsive">
+           <table class="table table-theme">
+               <thead>
+                   <tr>
+                       <th scope="col">#</th>
+                       <th scope="col">Título</th>
+                       <th scope="col">Fecha Inicio</th>
+                       <th scope="col">Fecha Fin</th>
+                       <th scope="col">Lugar</th>
+                       <th scope="col">Ciudad</th>
+                       <th scope="col">Acción</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   
+                   {% for expProfesional in expProfesionalb %}
+                       <tr>
+                           <th scope="row">{{forloop.counter}}</th>
+                           <td>{{expProfesional.titulo}}</td>
+                           <td>{{expProfesional.fechaIni}}</td>
+                           <td>{{expProfesional.fechaFin}}</td>
+                           <td>{{expProfesional.lugar}}</td>
+                           <td>{{expProfesional.ciudad}}</td>
+                           {% if request.user.is_authenticated %}
+                           <td>
+                               <a href="{% url 'expProfesionalEditar' expProfesional.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                               <a href="{% url 'expProfesionalEliminar' expProfesional.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                           </td>
+                           {% endif %}
+                       </tr>
+                   {% endfor %}
+               </tbody>
+           </table>
+       </div>
+   </div>
+{% endif %}
+
+{% if hard_skills_t %}
+
+   <br>
+   <br>                    
+   <div class="section-title">
+      <h2>Hard Skills</h2>
+   </div>
+
+   <br>
+   <div class="row gx-5 justify-content-center">
+       <div class="col-lg-10 table-responsive">
+           <table class="table table-theme">
+               <thead>
+                   <tr>
+                       <th scope="col">#</th>
+                       <th scope="col">Hard Skill</th>
+                       <th scope="col">Porcentaje</th>
+                       <th scope="col">Acciones</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   
+                   {% for hardSkills in hard_skillsb %}
+                       <tr>
+                           <th scope="row">{{forloop.counter}}</th>
+                           <td>{{hardSkills.hardSkills}}</td>
+                           <td>{{hardSkills.porcentaje}}</td>
+                           {% if request.user.is_authenticated %}
+                           <td>
+                               <a href="{% url 'hardSkillsEditar' hardSkills.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                               <a href="{% url 'hardSkillsEliminar' hardSkills.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                           </td>
+                           {% endif %}
+                       </tr>
+                   {% endfor %}
+               </tbody>
+           </table>
+       </div>
+   </div>
+{% endif %}
+
+{% if soft_skills_t %}
+
+       <br>
+       <br>                    
+       <div class="section-title">
+       <h2>Soft Skills</h2>
+       </div>
+
+       <div class="row gx-5 justify-content-center">
+           <div class="col-lg-10 table-responsive">
+               <table class="table table-theme">
+                   <thead>
+                       <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Soft Skill</th>
+                           <th scope="col">Porcentaje</th>
+                           <th scope="col">Acciones</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       
+                       {% for softSkills in soft_skillsb %}
+                           <tr>
+                               <th scope="row">{{forloop.counter}}</th>
+                               <td>{{softSkills.softSkills}}</td>
+                               <td>{{softSkills.porcentaje}}</td>
+                               {% if request.user.is_authenticated %}
+                               <td>
+                                   <a href="{% url 'softSkillsEditar' softSkills.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                   <a href="{% url 'softSkillsEliminar' softSkills.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                               </td>
+                               {% endif %}
+                           </tr>
+                       {% endfor %}
+                   </tbody>
+               </table>
+           </div>
+       </div>
+{% endif %}
+
+{% if proyectos_t %}
+
+       <br>
+       <br>                    
+       <div class="section-title">
+       <h2>Proyectos</h2>
+       </div>
+
+       <div class="row gx-5 justify-content-center">
+           <div class="col-lg-10 table-responsive">
+               <table class="table table-theme">
+                   <thead>
+                       <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Título</th>
+                           <th scope="col">Creado</th>
+                           <th scope="col">Acción</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       
+                       {% for proyecto in proyectosb %}
+                           <tr>
+                               <th scope="row">{{forloop.counter}}</th>
+                               <td>{{proyecto.titulo}}</td>
+                               <td>{{proyecto.creado}}</td>
+                               {% if request.user.is_authenticated %}
+                               <td>
+                                   <a href="{% url 'proyectosEditar' proyecto.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                   <a href="{% url 'proyectosEliminar' proyecto.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                   <a href="{% url 'proyectosDetalle' proyecto.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-info-square"></i> Detalles</a>
+                               </td>
+                               {% endif %}
+                           </tr>
+                       {% endfor %}
+                   </tbody>
+               </table>
+           </div>
+       </div>
+
+{% endif %}
+
+{% if intereses_t %}
+
+       <br>
+       <br>                    
+       <div class="section-title">
+       <h2>Intereses</h2>
+       </div>
+
+       <div class="row gx-5 justify-content-center">
+           <div class="col-lg-10 table-responsive">
+               <table class="table table-theme">
+                   <thead>
+                       <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Título</th>
+                           <th scope="col">Resumen</th>
+                           <th scope="col">Acción</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       
+                       {% for intereses in interesesb %}
+                           <tr>
+                               <th scope="row">{{forloop.counter}}</th>
+                               <td>{{intereses.titulo}}</td>
+                               <td>{{intereses.resumen}}</td>
+                               {% if request.user.is_authenticated %}
+                               <td>
+                                   <a href="{% url 'interesesEditar' intereses.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                   <a href="{% url 'interesesEliminar' intereses.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                               </td>
+                               {% endif %}
+                           </tr>
+                       {% endfor %}
+                   </tbody>
+               </table>
+           </div>
+       </div>
+{% endif %}
+
+    </body>

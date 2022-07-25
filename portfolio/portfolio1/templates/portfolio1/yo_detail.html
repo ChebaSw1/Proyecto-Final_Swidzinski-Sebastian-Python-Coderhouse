@@ -1,0 +1,31 @@
+{% extends "portfolio1/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+<body>
+    
+
+   
+<section id="skills" class="skills section-bg">
+    <div>
+       
+                        <h6>--Nombre: {{yo.nombre}}<h6><br>
+                        <h6>--Apellido: {{yo.apellido}}<h6><br>
+                        <h6>--Teléfono: {{yo.telefono}}<h6><br>
+                        <h6>--E-mail: {{yo.email}}<h6><br>
+                        <h6>--Fecha de Nac: {{yo.fechaDeNacimiento}}<h6><br>
+                        <h6>--Web Site: {{yo.webSite}}<h6><br>
+                        <h6>--Ciudad: {{yo.ciudad}}<h6><br>
+                        <h6>--Disponibilidad: {{yo.disponibilidad}}<h6><br>
+                        <h6>--Palabras Clave: {{yo.palabrasClave}} <h6><br>
+                        <h6>--Resumen: {{yo.resumen}}<h6><br>
+                        
+                
+        
+    </div>
+</section>
+    
+</body>
+</html>
+{% endblock %}

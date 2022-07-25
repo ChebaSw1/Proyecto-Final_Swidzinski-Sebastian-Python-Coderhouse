@@ -1,0 +1,68 @@
+{% extends "portfolio1/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+    
+                    <h1>PerfilesBuscar</h1>
+                    <p>Info de los Perfiles</p>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-12">
+                            <form class="d-flex my-2 my-lg-0" action="" method="post">
+                                {% csrf_token %}
+                                <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por nombre/apellido" aria-label="Search">
+                                <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br>
+                    <h4>Resultados
+                        {% if search %}
+                            para "{{busqueda}}":
+                        {% else %}
+                            totales:
+                        {% endif %}
+                    </h4>
+                    <br>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-10 table-responsive">
+                            <table class="table table-theme">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Teléfono</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    {% for miembro in miembros %}
+                                        <tr>
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{miembro.nombre}}</td>
+                                            <td>{{miembro.apellido}}</td>
+                                            <td>{{miembro.email}}</td>
+                                            <td>{{miembro.telefono}}</td>
+                                            <td>
+                                                <a href="{% url 'miembrosDetalle' miembro.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-info-square"></i> Detalles</a>
+                                                <a href="{% url 'miembrosEditar' miembro.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                                <a href="{% url 'miembrosEliminar' miembro.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                               
+                                            </td>
+                                            
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+    
+
+
+{% endblock %}

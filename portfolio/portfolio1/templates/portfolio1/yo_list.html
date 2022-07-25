@@ -1,0 +1,55 @@
+{% extends "portfolio1/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<body>
+
+    <br>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-10 table-responsive">
+                            <table class="table table-theme">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Teléfono</th>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    {% for yo in object_list %}
+                                        <tr>
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{yo.nombre}}</td>
+                                            <td>{{yo.apellido}}</td>
+                                            <td>{{yo.email}}</td>
+                                            <td>{{yo.telefono}}</td>
+                                            <td>{{yo.id}}</td>
+                                            <td>
+                                                <a href="{% url 'yoDetalle' yo.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-info-square"></i> Detalles</a>
+                                                <a href="{% url 'yoEditar' yo.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                                <a href="{% url 'yoEliminar' yo.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                               
+                                            </td>
+                                            
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+    <a href="{% url 'yoNuevo'  %}">Nuevo Perfil</a> | 
+
+
+</body>
+</html>
+    
+
+
+{% endblock %}

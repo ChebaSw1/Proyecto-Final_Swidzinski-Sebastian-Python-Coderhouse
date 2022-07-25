@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        {% load static %}
+       
+      
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      
+        <title>SWIDZINSKI Sebastián Portfolio</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+      
+        <!-- Favicons -->
+        <link href="{%static 'assets/img/favicon.png'%}" rel="icon">
+        <link href="{%static 'assets/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+      
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+      
+        <!-- Vendor CSS Files -->
+        <link href="{%static 'assets/vendor/aos/aos.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/boxicons/css/boxicons.min.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+        <link href="{%static 'assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet'%}">
+      
+        <!-- Template Main CSS File -->
+        <link href="{%static 'assets/css/style.css'%}" rel="stylesheet">
+      
+        <!-- =======================================================
+        * Template Name: iPortfolio - v3.7.0
+        * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+        * Author: BootstrapMade.com
+        * License: https://bootstrapmade.com/license/
+        ======================================================== -->
+      </head>
+<body>
+    <br>
+    <div class="section-title">
+        <h2>Mi Perfil</h2>
+        <a href="{% url 'Inicio' %}"><i class="bx bx-home"></i> Inicio</a><br>
+        <a href="{% url 'yoNuevo'  %}"><i class="bi bi-plus-square-fill"></i> Nuevo Perfil</a> 
+    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-10 table-responsive">
+                            <table class="table table-theme">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Teléfono</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    {% for yo in yo %}
+                                        <tr>
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{yo.nombre}}</td>
+                                            <td>{{yo.apellido}}</td>
+                                            <td>{{yo.email}}</td>
+                                            <td>{{yo.telefono}}</td>
+                                            <td>
+                                                
+                                                <a href="{% url 'yoEditar' yo.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                                <a href="{% url 'yoEliminar' yo.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                               
+                                            </td>
+                                            
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+ 
+ <br>
+ <br>                    
+ <div class="section-title">
+    <h2>Educación</h2>
+    <a href="{% url 'educacionNuevo'  %}"><i class="bi bi-plus-square-fill"></i>Nueva Educacion</a> 
+ </div>
+ 
+                        <div class="row gx-5 justify-content-center">
+                            <div class="col-lg-10 table-responsive">
+                                <table class="table table-theme">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Título</th>
+                                            <th scope="col">Lugar</th>
+                                            <th scope="col">Ciudad</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for educacion in educacion %}
+                                            <tr>
+                                                <th scope="row">{{forloop.counter}}</th>
+                                                <td>{{educacion.titulo}}</td>
+                                                <td>{{educacion.lugar}}</td>
+                                                <td>{{educacion.ciudad}}</td>
+                                                <td>
+                                                    
+                                                    <a href="{% url 'educacionEditar' educacion.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                                    <a href="{% url 'educacionEliminar' educacion.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                                   
+                                                </td>
+                                                
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+        
+   
+        <br>
+        <br>                    
+<div class="section-title">
+<h2>Experiencia Profesional</h2>
+<a href="{% url 'expProfesionalNuevo'  %}"><i class="bi bi-plus-square-fill"></i>Experiencia Profesional</a>
+</div>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Título</th>
+                            <th scope="col">Fecha Inicio</th>
+                            <th scope="col">Fecha Fin</th>
+                            <th scope="col">Lugar</th>
+                            <th scope="col">Ciudad</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for expProfesional in expProfesional %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{expProfesional.titulo}}</td>
+                                <td>{{expProfesional.fechaIni}}</td>
+                                <td>{{expProfesional.fechaFin}}</td>
+                                <td>{{expProfesional.lugar}}</td>
+                                <td>{{expProfesional.ciudad}}</td>
+                                
+                                <td>
+                                    
+                                    <a href="{% url 'expProfesionalEditar' expProfesional.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'expProfesionalEliminar' expProfesional.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                   
+                                </td>
+                                
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <br>
+        <br>                    
+        <div class="section-title">
+           <h2>Hard Skills</h2>
+           <a href="{% url 'hardSkillsNuevo'  %}"><i class="bi bi-plus-square-fill"></i>Nueva Hard Skill</a>
+        </div>
+
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Hard Skill</th>
+                            <th scope="col">Porcentaje</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for hardSkills in hard_skills %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{hardSkills.hardSkills}}</td>
+                                <td>{{hardSkills.porcentaje}}</td>
+                                <td>
+                                    
+                                    <a href="{% url 'hardSkillsEditar' hardSkills.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'hardSkillsEliminar' hardSkills.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                   
+                                </td>
+                                
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+            <br>
+            <br>                    
+            <div class="section-title">
+            <h2>Soft Skills</h2>
+            <a href="{% url 'softSkillsNuevo'  %}"><i class="bi bi-plus-square-fill"></i>Nueva Soft Skill</a>
+            </div>
+
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-10 table-responsive">
+                    <table class="table table-theme">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Soft Skill</th>
+                                <th scope="col">Porcentaje</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for softSkills in soft_skills %}
+                                <tr>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td>{{softSkills.softSkills}}</td>
+                                    <td>{{softSkills.porcentaje}}</td>
+                                    <td>
+                                        
+                                        <a href="{% url 'softSkillsEditar' softSkills.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                        <a href="{% url 'softSkillsEliminar' softSkills.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                       
+                                    </td>
+                                    
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <br>
+            <br>                    
+            <div class="section-title">
+            <h2>Proyectos</h2>
+            <a href="{% url 'proyectosNuevo'  %}"><i class="bi bi-plus-square-fill"></i>Nuevo Proyecto</a>
+            </div>
+
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-10 table-responsive">
+                    <table class="table table-theme">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Título</th>
+                                <th scope="col">Creado</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for proyecto in proyectos %}
+                                <tr>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td>{{proyecto.titulo}}</td>
+                                    <td>{{proyecto.creado}}</td>
+                                    
+                                    <td>
+                                        
+                                        <a href="{% url 'proyectosEditar' proyecto.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                        <a href="{% url 'proyectosEliminar' proyecto.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                        <a href="{% url 'proyectosDetalle' proyecto.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-info-square"></i> Detalles</a>
+                                    </td>
+                                    
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+  
+
+            <br>
+            <br>                    
+            <div class="section-title">
+            <h2>Intereses</h2>
+            <a href="{% url 'interesesNuevo'  %}"><i class="bi bi-plus-square-fill"></i>Nuevo Interes</a>
+            </div>
+
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-10 table-responsive">
+                    <table class="table table-theme">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Título</th>
+                                <th scope="col">Resumen</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for intereses in intereses %}
+                                <tr>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td>{{intereses.titulo}}</td>
+                                    <td>{{intereses.resumen}}</td>
+                                    <td>
+                                        
+                                        <a href="{% url 'interesesEditar' intereses.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                        <a href="{% url 'interesesEliminar' intereses.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                       
+                                    </td>
+                                    
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <br>
+            <br>                    
+            <div class="section-title">
+               <h2>Logged User</h2>
+               <a href="{% url 'register'  %}"><i class="bi bi-plus-square-fill"></i>Nuevo Usuario</a>
+            </div>
+    
+            <br>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-10 table-responsive">
+                    <table class="table table-theme">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Date joined</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                                <tr>
+                                    <th scope="row">{{usuario.id}}</th>
+                                    <td>{{usuario.username}}</td>
+                                    <td>{{usuario.email}}</td>
+                                    <td>{{usuario.date_joined}}</td>
+
+                                    <td>
+                                        
+                                        <a href="{% url 'EditarUser' %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                        
+                                    </td>
+                                    
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>            
+
+            <li><a href="{% url 'Inicio' %}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Inicio</span></a></li>
+   
+   
+</body>
+</html>

@@ -1,0 +1,115 @@
+{% extends "portfolio1/padre.html" %}
+
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<!-- ======= Skills Sección ======= -->
+
+
+<section id="skills" class="skills section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Skills</h2>
+        
+      
+      <div class="row skills-content">
+
+        <div class="col-lg-6" data-aos="fade-up">
+
+          <h4>Hard</h4>
+
+          {% for hardskill in hard_skills %}
+
+          <div class="progress">
+            <span class="skill">{{hardskill.hardSkills}} <i class="val">{{hardskill.porcentaje}}%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{hardskill.porcentaje}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          {% endfor %}
+
+                 
+
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+
+          <h4>Soft</h4>
+          
+          {% for softskill in soft_skills %}
+
+          <div class="progress">
+            <span class="skill">{{softskill.softSkills}} <i class="val">{{softskill.porcentaje}}%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{softskill.porcentaje}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- Termina Skills Sección --> 
+
+<!-- ======= Resume Sección ======= -->
+
+<section id="resume" class="resume">
+  <div class="container">
+    
+     <div class="section-title">
+              <h2>Resume</h2>
+              <p>{{yo.resumen}}</p>
+
+      </div>
+    
+      <div class="row">
+           <div class="col-lg-6" data-aos="fade-up">
+                    
+                <h3 class="resume-title">Educación</h3>
+                
+                {% for educacion in educacion %}
+                <div class="resume-item">
+                  <h4>{{educacion.titulo}}</h4>
+                  <h5>{{educacion.fechaIni}} - {{educacion.fechaFin}}</h5>
+                  <p><em>{{educacion.lugar}}, {{educacion.ciudad}}</em></p>
+                  <p>{{educacion.resumen}}</p>
+                  <h5>{{educacion.status}}</h5>
+                </div>
+                
+                {% endfor %}
+                
+              </div>
+              <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="resume-title">Experiencia Profesional</h3>
+
+                {% for expProf in expProfesional %}
+
+                <div class="resume-item">
+                  <h4>{{expProf.titulo}}</h4>
+                  <h5>{{expProf.fechaIni}} - {{expProf.fechaFin}}</h5>
+                  <p><em>{{expProf.lugar}}, {{expProf.ciudad}}</em></p>
+                  <ul>
+                    <p>{{expProf.resumen}}</p>
+                  </ul>
+                </div>
+                
+                {% endfor %}
+
+              </div>
+            </div>
+    
+          </div>
+        </section><!-- End Resume Section -->
+
+
+
+
+     
+
+
+{% endblock %}
+
